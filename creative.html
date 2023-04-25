@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Matīss Babris | Creative Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Matīss Babris <br />Creative Project</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Overview</a></li>
+							<li><a href="python.html">Python Project</a></li>
+							<li><a href="powerbi.html">Power BI Project</a></li>
+							<li class="active"><a href="creative.html">Creative Project</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://twitter.com/StatsWithMatiss" class="icon brands fa-twitter" target= "_blank"><span class="label">Twitter</span></a></li>
+							<li><a href="https://www.linkedin.com/in/matissbabris/" class="icon brands fa-linkedin" target= "_blank"><span class="label">linkedin</span></a></li>
+							<li><a href="https://github.com/matiss1993" class="icon brands fa-github" target= "_blank"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>Creative Project<br />
+									Data Viz in 3D</h1>
+									<p>I've been playing around with various types of data visualizations. And finally decided to combine two skills that I have - data visualization and 3D modeling/rendering.
+									</p>
+								</header>
+								<div class="image main"><img src="images/latvia-population-density-portfolio.gif" alt="" /></div>
+								<p>❗❗ GIF is compressed due to web host file size limitations, to see the GIF in HD - check my <a href="https://www.linkedin.com/posts/matissbabris_lately-ive-been-playing-around-with-various-activity-7052256083783892992-KUoY?utm_source=share&utm_medium=member_desktop" target= "_blank">Linkedin</a>.</br> 
+									I used dataset about Population density of Latvia that I found on <a href="https://data.humdata.org/dataset/kontur-population-latvia" target= "_blank">Kontur.</a> </p>
+								<p>Here you can see a Population density map of Latvia. Higher spikes and greener color means higher population density.<br />
+								
+								This animated GIF was created by the use of multiple tools:<br />
+								📎 Data is from <a href="https://data.humdata.org/dataset/kontur-population-latvia" target= "_blank">Kontur</a> ;<br />
+								🛠 Data manipulation (converting .gpkg data to useable JPEG image as displacement map) in QGIS;<br />
+								🎨 3D modelling and rendering in Blender 3.5;<br />
+								🎥 Final GIF was created in Adobe Premiere Pro.</p>
+								<h2>Step by step guide</h2>
+								<p>Short guide on how to achieve this kind of data visualization. You can use 2 videos I created as simple tutorials and read a brief step by step guide. All you need is:<br/>
+								1) Geo-package file (.gpkg) with data. I used data from <a href="https://data.humdata.org/dataset/kontur-population-latvia" target= "_blank">Kontur</a>;<br/>
+								2) <a href="https://www.qgis.org/en/site/forusers/download.html" target= "_blank">QGIS software</a>;<br/>
+								3) <a href="https://www.blender.org/download/" target= "_blank">Blender 3.5</a>;<br/>
+								4) Any video editing software or online tool that can create GIF from images. I used Adobe Premiere Pro.</p>
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/iWminSHN3ck" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/KrPcJUD3jWM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+								<p>
+									<h3>Step 1: Download data and upload it in QGIS</h3>
+									<ul>
+										<li>Download .gpkg file;</li>
+										<li>Open QGIS software;</li>
+										<li>Click on Open Data Source Manager button or use Ctrl+L shortcut;</li>
+										<li>Choose Vector on left-side menu of Data Source Manager and in source browse for .gpkg file that you downloaded;</li>
+										<li>Click on Add, select Population item and press Add Layers button;</li>
+										<li>Now you should see your data in front of you and it is formed from hexagons.</li>
+									</ul>
+								</p>
+								<img src="images/data-population.PNG" alt="" width="80%" />
+								<p>	
+									<h3>Step 2: Create a displacement map</h3>
+									In order to create this displacement map, we need to create 2 additional calculated columns in data: area of each hexagon and population density in each hexagon.
+									<ul>
+										<li>Right click on created layer, chosse Open Attribute Table;</li>
+										<li>Press on Open Field Calculator button or use Ctrl+I shortcut;</li>
+										<li>Create Area column. In Output field name enter the name of column. In this case Area is a good option. In expression field enter this: `$area / 1000000` to convert the value to km2, click OK;</li>
+										<li>Create Population Density column. Do as in previous step, just change the column name to Density and expression to: `"population"/"Area"`;</li>
+										<li>Now to create the gradient map of density, right click on layer, choose Properties and click on Symbology;</li>
+										<li>In drop-down menu choose Graduated, change Value to Density.</li>
+										<li>In color ramp choose light grey as Color 1 and Black as Color 2. And it should be Continuous not Discrete.</li>
+										<li>In Mode choose Natural Breaks (Jenks) or Even Intervals option and in classes you can choose how many "bins" to create.</li>
+										<li>In Symbol, click on the color, Simple Fill and set stroke style to No line.</li>
+										<li>Now you should have something similar to a grayscale map.</li>
+
+									</ul>
+								</p>
+									<img src="images/grayscale.PNG" alt="" width="80%" />
+								<p>
+									<h3>Step 3: Export image</h3>
+									<ul>
+										<li>Project -> Import/Export -> Export Map to Image</li>
+										<li>Adjust image dimensions and resolution as necessary. I created image of 16710 x 16710 px and 1200 dpi. Choose file location and export it.</li>
+
+									</ul>
+									
+								</p>
+								<p>
+									<h3>Step 4: Creating a 3D model</h3>
+									<ul>
+										<li>Open up a Blender software</li>
+										<li>Press A to select everything in scene, press X to delete selection and press Enter to confirm.</li>
+										<li>Shift+A -> Mesh -> Plane.</li>
+										<li>S -> 15 -> Enter to scale the plane 15 times bigger.</li>
+										<li>Press Tab to enter the Edit Mode. Right-click on plane and choose Subdivide. Shift+R to repeat. (I did it for 8-9 times)</li>
+										<li>Press Tab to leab Edit Mode and enter Object Mode. Add Displace modifier. Add new texture and choose the image that was created in QGIS.</li>
+										<li>Change Strength to -0.2 and Midlevel to 1.0</li>
+										<li>Add Subdivision Surface modifier, place it before Displace modifier and change Levels Viewport to 2</li>
+										<li>Open Shader Editor and create new material named Density. Add ColorRamp, Seperate XYZ and Texture Coordinates nodes.</li>
+										<li>Texture Coordinates Object to Seperate XYZ Fac, Seperate XYZ Z to ColorRamp Fac, ColorRamp Color to Principled BSDF Base Color.</li>
+										<li>Adjust ColorRamp settings as you desire, to achieve your goal.</li>
+										<li>Add Camera with path.</li>
+										<li>Add Area lights.</li>
+										<li>Customize light, camera and animation settings.</li>
+										<li>Render Animation.</li>	
+									</ul>
+									
+								</p>
+								<p>
+									<h3>Step 5: Creating a GIF</h3>
+									<ul>
+										<li>Find a video software or online tool that can convert images to GIF.</li>
+										<li>Upload rendered images and create GIF</li>
+										
+									</ul>
+									
+								</p>
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Location</h3>
+								<p>Riga<br />
+								Latvia</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">matiss051293@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://twitter.com/StatsWithMatiss" class="icon brands alt fa-twitter" target= "_blank"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.linkedin.com/in/matissbabris/" class="icon brands alt fa-linkedin" target= "_blank"><span class="label">Linkedin</span></a></li>
+									<li><a href="https://github.com/matiss1993" class="icon brands alt fa-github" target= "_blank"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Matīss Babris</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
